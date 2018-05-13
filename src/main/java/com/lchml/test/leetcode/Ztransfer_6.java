@@ -1,6 +1,9 @@
 package com.lchml.test.leetcode;
 
-public class Ztransfer {
+/**
+ * Created by lc on 2018/05/13.
+ */
+public class Ztransfer_6 {
     public static void main(String[] args) {
         System.out.println(convert("ABCDE", 4));
     }
