@@ -1,11 +1,13 @@
 package com.lchml.test.leetcode;
 
+import java.util.Arrays;
+
 /**
  * Created by lc on 2018/05/13.
  */
 public class TwoSum_1 {
     public static void main(String[] args) {
-        System.out.println(twoSum(new int[]{2, 7, 11, 15}, 9));
+        System.out.println(Arrays.toString(twoSum(new int[]{2, 7, 11, 15}, 9)));
     }
 
     public static int[] twoSum(int[] nums, int target) {
