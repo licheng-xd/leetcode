@@ -10,7 +10,7 @@ import java.util.TreeSet;
  *
  * Created by lc on 2019/02/14.
  */
-public class NumberUtils {
+public class NumberUtils_ali {
 
 	/**
 	 * 利用输入的非负长整型数组，拼接出最大的正整数。

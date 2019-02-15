@@ -28,29 +28,57 @@ public class LetterCombinations_17 {
 		}
 
 		char[] chars = digits.toCharArray();
-		int i = chars.length - 1;
-		for (String s : map.get(chars[i])) {
-			String str = s + getNext(i);
-		}
-		// TODO
-
+		int i = 0;
+		getNext("", chars, i, ret);
 		return ret;
 	}
 
-	public List<String> getNext(int i) {
-		if (i > 0) {
-			return getNext(i);
+	private void getNext(String pre, char[] chars, int i, List<String> ret) {
+		if (i >= chars.length) {
+			ret.add(pre);
+			return;
 		}
-		return map.get(i);
+		for (String s : map.get(chars[i])) {
+			getNext(pre + s, chars, i+1, ret);
+		}
+	}
+
+	public static List<String> letterCombinations2(String digits) {
+		if(digits.length() == 0) return new ArrayList<>();
+		char[][] numChar = new char[][]{
+				{'a','b','c'},
+				{'d','e','f'},
+				{'g','h','i'},
+				{'j','k','l'},
+				{'m','n','o'},
+				{'p','q','r','s'},
+				{'t','u','v'},
+				{'w','x','y','z'}
+		};
+		List<String> result = new ArrayList<>();
+		char[] tem  = new char[digits.length()];
+		char[][] temp = new char[digits.length()][];
+		for(int i = 0; i < digits.length(); i ++){
+			temp[i] = numChar[digits.charAt(i) - '2'];
+		}
+		build(result, temp, tem, 0);
+		return result;
+
+	}
+
+	private static void build(List<String> result, char[][] temp, char[] tem, int idx){
+		for(char tt : temp[idx]){
+			tem[idx] = tt;
+			if(idx == temp.length - 1){
+				result.add(new String(tem));
+			}else{
+				build(result, temp, tem, idx + 1);
+			}
+		}
 	}
 
 
-
 	public static void main(String[] args) {
-		List list = new ArrayList<String>();
-		list.add("abc");
-		list.add("123");
-		list.add(123);
-		System.out.println(list);
+		System.out.println(new LetterCombinations_17().letterCombinations2("235"));
 	}
 }
