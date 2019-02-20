@@ -1,5 +1,6 @@
 package com.lchml.test.leetcode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +22,24 @@ public class GenerateParenthesis_22 {
 
 	// 回溯算法
 	public List<String> generateParenthesis(int n) {
-		return null;
+		List<String> ret = new ArrayList<>();
+		if (n > 0) {
+			build(ret, "", 0, 0, n);
+		}
+		return ret;
+	}
+
+	public void build(List<String> ret, String src, int open, int close, int n) {
+		if (close > open || close > n || open > n) return;
+		if (open == n && close == n) {
+			ret.add(src);
+		}
+		build(ret, src + ")", open, close + 1, n);
+		build(ret, src + "(", open + 1, close, n);
 	}
 
 
-
 	public static void main(String[] args) {
-
+		System.out.println(new GenerateParenthesis_22().generateParenthesis(3));
 	}
 }
