@@ -1,6 +1,6 @@
 package com.lchml.test.leetcode;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.Set;
 import java.util.TreeSet;
