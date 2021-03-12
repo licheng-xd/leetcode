@@ -10,8 +10,11 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven { url = 'http://mvn.hz.netease.com/artifactory/libs-releases' }
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile("com.netease.ysf.dubbo.command:ysf-dubbo-qos:1.0.0")
 }

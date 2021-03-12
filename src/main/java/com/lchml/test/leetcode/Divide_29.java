@@ -24,11 +24,48 @@ package com.lchml.test.leetcode;
 public class Divide_29 {
 
 	public int divide(int dividend, int divisor) {
-		//TODO
-		return 0;
+		if (dividend == 0) {
+			return 0;
+		}
+		int over = (int) (((long) 2<<31 - 1) - 1);
+		if (divisor == 0) {
+			return over;
+		}
+		long dividendL = (long) dividend;
+		long divisorL = (long) divisor;
+		boolean positive = true;
+		if ((dividendL > 0 && divisorL < 0) || (dividendL < 0 && divisorL > 0)) {
+			positive = false;
+		}
+		dividendL = Math.abs(dividendL);
+		divisorL = Math.abs(divisorL);
+		if (divisorL > dividendL) {
+			return 0;
+		}
+		if (divisorL == dividendL) {
+			return positive ? 1 : -1;
+		}
+		long divisorLOrigin = divisorL;
+		int step = 0;
+		while (divisorL << 1 < dividendL) {
+			divisorL  = divisorL << 1;
+			step++;
+		}
+		long sum = 1L << step;
+		long left = dividendL - divisorL;
+		if (left >= divisorLOrigin) {
+			sum = sum + divide((int) left, (int) divisorLOrigin);
+		}
+		if (positive && sum > over) {
+			return over;
+		}
+		if (!positive && sum < over + 1) {
+			return over + 1;
+		}
+		return (int) (positive ? sum : 0 - sum);
 	}
 
 	public static void main(String[] args) {
-		System.out.println(new Divide_29().divide(10, 3));
+		System.out.println(new Divide_29().divide(-17, -3));
 	}
 }
