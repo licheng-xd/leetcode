@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'scala'
 }
 
 group 'com.lchml.test.leetcode'
@@ -15,6 +14,4 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-
-    compile("com.netease.ysf.dubbo.command:ysf-dubbo-qos:1.0.0")
 }

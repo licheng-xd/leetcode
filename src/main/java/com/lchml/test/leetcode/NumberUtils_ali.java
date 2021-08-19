@@ -1,7 +1,5 @@
 package com.lchml.test.leetcode;
 
-import org.testng.annotations.Test;
-
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -76,43 +74,35 @@ public class NumberUtils_ali {
 		}
 	}
 
-	@Test
 	public void testLargestNumber() {
 		System.out.println(largestNumber(new long[] {2, 51, 0, 9}));
 	}
 
-	@Test
 	public void testLargestNumber2() {
 		System.out.println(largestNumber(new long[] {Long.MAX_VALUE, 51, 0, 9}));
 	}
 
-	@Test
 	public void testLargestNumber7() {
 		System.out.println(largestNumber(new long[] {Long.MAX_VALUE/10, 51, 0, 9}));
 	}
 
-	@Test
 	public void testLargestNumber8() {
 		System.out.println(largestNumber(new long[] {Long.MAX_VALUE/10, 51, 0, 8}));
 	}
 
-	@Test
 	public void testLargestNumber3() {
 		System.out.println(largestNumber(new long[] {0, 0, 0, 0}));
 	}
 
-	@Test
 	public void testLargestNumber4() {
 		System.out.println(largestNumber(new long[] {1, 0, 0, 0}));
 	}
 
-	@Test
 	public void testLargestNumber5() {
 		System.out.println(largestNumber(new long[] {765, 7654}));
 	}
 
 
-	@Test
 	public void testLargestNumber6() {
 		System.out.println(largestNumber(new long[] {765, 7658}));
 	}
