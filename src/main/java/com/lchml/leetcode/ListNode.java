@@ -32,8 +32,4 @@ public class ListNode {
 		}
 		return ret;
 	}
-
-	public static void main(String... args) {
-		System.out.println(fromInts(1, 2, 4, 0, 6));
-	}
 }
