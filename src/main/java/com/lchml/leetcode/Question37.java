@@ -22,6 +22,8 @@ public class Question37 {
 
     static Deque<Triple> stack = new ArrayDeque<>();
 
+    static boolean finish = false;
+
     static class Triple {
         int a;
 
@@ -89,7 +91,7 @@ public class Question37 {
         ret[2][t.a / 3 * 3 + t.b / 3][t.c] = 1;
         board[t.a][t.b] = Character.forDigit(t.c + 1, 10);
         stack.addLast(t);
-//        System.out.println("入栈[" + t.a + "," + t.b + "]: " + board[t.a][t.b]);
+        System.out.println("入栈[" + t.a + "," + t.b + "]: " + board[t.a][t.b]);
     }
 
     public static void popUntil(char[][] board, int[][][] ret, Triple target) {
@@ -97,7 +99,7 @@ public class Question37 {
         do {
             pop = stack.pollLast();
             if (pop != null) {
-//                System.out.println("出栈[" + pop.a + "," + pop.b + "]: " + board[pop.a][pop.b]);
+                System.out.println("出栈[" + pop.a + "," + pop.b + "]: " + board[pop.a][pop.b]);
                 ret[0][pop.a][pop.c] = 0;
                 ret[1][pop.b][pop.c] = 0;
                 ret[2][pop.a / 3 * 3 + pop.b / 3][pop.c] = 0;
@@ -150,28 +152,34 @@ public class Question37 {
                 System.out.println(Arrays.toString(chars));
             }
             System.out.println("========================================");
+            finish = true;
             return true;
         }
         if (insert) {
             return solve(board, ret);
         } else {
+            boolean valid = false;
             for (int p : backup2) {
+                if (finish) {
+                    break;
+                }
                 Triple branch = new Triple(m, n, p);
-                System.out.println("分支路径：" + branch);
+                System.out.println("进入分支路径：" + branch);
                 insert(board, ret, branch);
-                if (!solve(board, ret)) {
+                valid = solve(board, ret);
+                System.out.println("分支路径结果：" + branch + ", " + valid);
+                if (!valid) {
                     // 尝试用栈做回滚操作，每次赋值压入栈帧，分支错误后回退到分叉点栈帧
                     popUntil(board, ret, branch);
+                    System.out.println("跳出分支路径：" + branch);
                 }
             }
-            return true;
+            return valid;
         }
     }
 
-
-
     public static void main(String[] args) {
-        char[][] board = new char[][] {{'5','3','.','.','7','.','.','.','.'}
+        char[][] board1 = new char[][] {{'5','3','.','.','7','.','.','.','.'}
                             ,{'6','.','.','1','9','5','.','.','.'}
                             ,{'.','9','8','.','.','.','.','6','.'}
                             ,{'8','.','.','.','6','.','.','.','3'}
@@ -190,6 +198,16 @@ public class Question37 {
                 ,{'.','.','.','8','.','3','.','2','.'}
                 ,{'.','.','.','.','.','.','.','.','6'}
                 ,{'.','.','.','2','7','5','9','.','.'}};
+
+        char[][] board3 = new char[][] {{'.','.','.','2','.','.','.','6','3'}
+                ,{'3','.','.','.','.','5','4','.','1'}
+                ,{'.','.','1','.','.','3','9','8','.'}
+                ,{'.','.','.','.','.','.','.','9','.'}
+                ,{'.','.','.','5','3','8','.','.','.'}
+                ,{'.','3','.','.','.','.','.','.','.'}
+                ,{'.','2','6','3','.','.','5','.','.'}
+                ,{'5','.','3','7','.','.','.','.','8'}
+                ,{'4','7','.','.','.','1','.','.','.'}};
         
         solveSudoku(board2);
     }
