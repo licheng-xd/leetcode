@@ -62,7 +62,7 @@ public class Question37 {
 
     public static void solveSudoku(char[][] board) {
         // 初始化
-        int[][][] ret = new int[3][9][9];
+        int[][][] ret = new int[3][9][9]; // 这个三维数组可以压缩成用bit位表示的数字，节省空间
         for (int i=0; i<9; i++) {
             for (int j=0; j<9; j++) {
                 if (board[i][j] != '.') {
@@ -169,7 +169,7 @@ public class Question37 {
                 valid = solve(board, ret);
                 System.out.println("分支路径结果：" + branch + ", " + valid);
                 if (!valid) {
-                    // 尝试用栈做回滚操作，每次赋值压入栈帧，分支错误后回退到分叉点栈帧
+                    // 用栈做回滚操作，每次赋值压入栈帧，分支错误后回退到分叉点栈帧
                     popUntil(board, ret, branch);
                     System.out.println("跳出分支路径：" + branch);
                 }
